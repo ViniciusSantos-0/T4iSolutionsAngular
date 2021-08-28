@@ -1,7 +1,18 @@
 <div *ngIf="selectedProject">
-  <app-titulo [title]="'Projeto: '+ selectedProject"></app-titulo>
-  <br>
-  <button class="btn btn-default" (click)="voltar()">Voltar</button>
+  <div class="row"> 
+      <app-titulo [title]="'Projeto: '+ selectedProject"></app-titulo>
+  </div>
+  <div class="d-flex flex-row-reverse">
+    <button class="btn btn-warning" (click)="voltar()">Lista de projetos</button>
+  </div>
+  <div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">Nome do Projeto:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Digite o nome do projeto">
+  </div>
+  <div class="mb-3">
+    <label for="formGroupExampleInput2" class="form-label">Descrição do Projeto:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Descrição">
+  </div>
 </div>
 <div *ngIf="!selectedProject">
   <app-titulo [title]="title"></app-titulo>
