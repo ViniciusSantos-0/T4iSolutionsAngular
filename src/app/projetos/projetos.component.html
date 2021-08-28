@@ -1,4 +1,18 @@
-<h1>{{title}}</h1>
-<ul>
-    <li *ngFor="let projetos of projetos">{{projetos.name}}</li>
-</ul>
+<app-titulo [title]="title"></app-titulo>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projetos of projetos">
+        <th scope="row">{{projetos.id}}</th>
+        <td>{{projetos.name}}</td>
+        <td>{{projetos.description}}</td>
+      </tr>
+    </tbody>
+  </table>

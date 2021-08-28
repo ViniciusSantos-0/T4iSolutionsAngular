@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjetosComponent implements OnInit {
 
-  title = 'Projetos';
+  public title = 'Projetos';
  public projetos = [
-   { name: "NetWorks"},
-   { name: "System For T4i"},
-   { name: "System For Google"},
-   { name: "Upgrade Our System"},
-   { name: "Create An Innovative System"},
+   {id:1, name: "NetWorks", description: "Rede de contatos e negócios"},
+   {id:2, name: "System For T4i", description: "Sistema para administração de serviços"},
+   {id:3, name: "System For Google", description: "Sistema para verificar pré-requisitos de padrões de arquitetura dentro de um software"},
+   {id:4, name: "Upgrade Our System", description: "Melhorias em nosso sistema"},
+   {id:5, name: "Create An Innovative System", description: "Planejar, estruturar e criar um sistema inovador"},
   ];
 
 

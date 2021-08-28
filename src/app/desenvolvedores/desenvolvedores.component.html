@@ -1,5 +1,17 @@
-<h1>{{title}}</h1>
-
-<ul>
-  <li *ngFor = 'let dev of dev'>{{dev.name}}</li>
-</ul>
+<app-titulo [title]="title"></app-titulo>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cargo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dev of dev">
+      <th scope="row">{{dev.id}}</th>
+      <td>{{dev.name}}</td>
+      <td>{{dev.position}}</td>
+    </tr>
+  </tbody>
+</table>
