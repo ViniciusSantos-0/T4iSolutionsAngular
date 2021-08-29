@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Projeto } from '../models/Projeto';
 
 @Component({
@@ -9,6 +10,7 @@ import { Projeto } from '../models/Projeto';
 })
 export class ProjetosComponent implements OnInit {
 
+  public modalRef!: BsModalRef;
   public projectForm!: FormGroup;
   public title = 'Projetos';
   public selectedProject!: Projeto;
@@ -22,7 +24,14 @@ export class ProjetosComponent implements OnInit {
     { id: 4, name: "Upgrade Our System", description: "Melhorias em nosso sistema" },
     { id: 5, name: "Create An Innovative System", description: "Planejar, estruturar e criar um sistema inovador" },
   ];
-  constructor(private fb: FormBuilder) { 
+
+
+ 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  constructor(private fb: FormBuilder, private modalService: BsModalService) { 
     this.createForm();
   }
 

@@ -17,19 +17,38 @@
 <div *ngIf="!ver">
   <app-titulo [title]="title"></app-titulo>
   <table class="table table-hover">
-    <thead>
+    <thead class="thead-light">
       <tr>
+        <th scope="col">Visualizar</th>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">Cargo</th>
+        <th scope="col">Opções</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of dev" style="cursor: pointer;" (click)="devSelect(dev)">
+      <tr *ngFor="let dev of dev">
+        <td><button (click)="devSelect(dev)" class=" text-dark btn btn-sm btn-outline-warning">Detalhe</button></td>
         <th scope="row">{{dev.id}}</th>
         <td>{{dev.name}}</td>
         <td>{{dev.position}}</td>
+        <td>
+         <div class="btn-group">
+          <button class="btn btn-sm btn-outline-primary" (click)="openModal(template)">Projetos</button>
+        </div>
+        </td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>

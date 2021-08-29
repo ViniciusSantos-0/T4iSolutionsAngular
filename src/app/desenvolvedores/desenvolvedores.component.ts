@@ -1,5 +1,6 @@
 import { isEmptyExpression } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Desenvolvedor } from '../models/Desenvolvedor';
 
 @Component({
@@ -9,6 +10,7 @@ import { Desenvolvedor } from '../models/Desenvolvedor';
 })
 export class DesenvolvedoresComponent implements OnInit {
 
+  public modalRef!: BsModalRef;
   public title = 'Desenvolvedores';
   public ver = false;
   public devSelected!: Desenvolvedor;
@@ -24,10 +26,15 @@ export class DesenvolvedoresComponent implements OnInit {
     { id: 7, name: 'Tomaz Santos Junior', position: 'Engenheiro de sofware full-Stack Sênior' },
     { id: 8, name: 'Igor Albuquerque', position: 'Engenheiro de software' },
     { id: 9, name: 'Vinicius Santos', position: 'Estagiário Futuro Engenheiro' },
-  ];
-  constructor() { }
+  ]; 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  
+  constructor(private modalService: BsModalService) { 
+  }
 
-  devSelect( dev: Desenvolvedor) {
+  devSelect( dev: Desenvolvedor ) {
     this.devSelected = dev;
     this.ver = true;
   }
