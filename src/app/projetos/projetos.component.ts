@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Projeto } from '../models/Projeto';
+import { ProjetosService } from './projetos.service';
 
 @Component({
   selector: 'app-projetos',
@@ -17,36 +18,49 @@ export class ProjetosComponent implements OnInit {
   public ver = false;
   public textSimple!: string;
 
-  public projetos = [
-    { id: 1, name: "NetWorks", description: "Rede de contatos e negócios" },
-    { id: 2, name: "System For T4i", description: "Sistema para administração de serviços" },
-    { id: 3, name: "System For Google", description: "Sistema para verificar pré-requisitos de padrões de arquitetura dentro de um software" },
-    { id: 4, name: "Upgrade Our System", description: "Melhorias em nosso sistema" },
-    { id: 5, name: "Create An Innovative System", description: "Planejar, estruturar e criar um sistema inovador" },
-  ];
+  public projetos!: Projeto[];
 
 
- 
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  constructor(private fb: FormBuilder, private modalService: BsModalService) { 
+  constructor(private fb: FormBuilder, private modalService: BsModalService,
+    private projetoService: ProjetosService) {
     this.createForm();
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.carregarProjetos();
+  }
+  carregarProjetos() {
+    // Biblioteca rxjs
+    this.projetoService.getAll().subscribe(
+      //mensagem de sucesso
+      (projetos: Projeto[]) => { this.projetos = projetos },
+      //mensagem  de falha
+      (erro: any) => { console.error(erro) }
+    );
   }
 
-  createForm(){
+  createForm() {
     this.projectForm = this.fb.group({
-      name: ['', Validators.required], 
+      id: [''],
+      name: ['', Validators.required],
       description: ['', Validators.required]
     });
   }
 
-  projectSubmit(){
-    console.log(this.projectForm.value)
+  salvarProjeto(projeto: Projeto) {
+    this.projetoService.put(projeto.id, projeto).subscribe(
+      (projeto) => {console.log(projeto); this.carregarProjetos()},
+      (erro:any) => {console.log(erro)}
+    )
+  }
+
+  projectSubmit() {
+    this.salvarProjeto(this.projectForm.value);
   }
   selectProject(project: Projeto) {
     this.selectedProject = project;
@@ -57,6 +71,6 @@ export class ProjetosComponent implements OnInit {
     this.ver = false;
   }
 
-  
+
 
 }
