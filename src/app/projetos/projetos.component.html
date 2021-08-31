@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-sm-4" *ngIf="ver">
     <div class="row justify-content-between">
       <div class="col-4">
@@ -31,8 +30,8 @@
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Visualizar</th>   
-          <th scope="col">#</th>         
+          <th scope="col">Visualizar</th>
+          <th scope="col">#</th>
           <th scope="col">Nome</th>
           <th scope="col">Descrição</th>
           <th scope="col">Opções</th>
@@ -40,26 +39,26 @@
       </thead>
       <tbody>
         <tr *ngFor="let projetos of projetos">
-          <th> <button (click)="selectProject(projetos)" class=" text-dark btn btn-sm btn-outline-warning ">Detalhe</button></th> 
+          <th> <button (click)="selectProject(projetos)" class=" text-dark btn btn-sm btn-outline-warning ">Detalhe</button></th>
           <th scope="row">{{projetos.id}}</th>
           <td>{{projetos.name}}</td>
           <td>{{projetos.description}}</td>
           <td class="btn-group">
             <button (click)="openModal(template)"  class="btn btn-sm btn-outline-primary">Devs</button>
-            <button class="btn btn-sm btn-outline-danger">Excluir</button>        
+            <button class="btn btn-sm btn-outline-danger">Excluir</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div> 
+</div>
 
 <ng-template #template>
   <div class="modal-body">
     <app-desenvolvedores></app-desenvolvedores>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn pull-right" aria-label="Close" 
+    <button type="button" class="btn pull-right" aria-label="Close"
     (click)="modalRef?.hide()">Fechar
     </button>
   </div>

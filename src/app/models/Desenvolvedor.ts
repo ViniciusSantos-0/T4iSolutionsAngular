@@ -1,5 +1,5 @@
 export class Desenvolvedor {
-    id!: Number;
+    id!: number;
     name!: string;
     position!: string;
 }

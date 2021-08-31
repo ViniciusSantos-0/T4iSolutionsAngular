@@ -20,8 +20,6 @@ export class ProjetosComponent implements OnInit {
 
   public projetos!: Projeto[];
 
-
-
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
