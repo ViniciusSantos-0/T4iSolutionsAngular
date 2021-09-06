@@ -1,13 +1,8 @@
 <div class="row">
-  <div class="col-sm-4" *ngIf="ver">
-    <div class="row justify-content-between">
-      <div class="col-4">
-        <app-titulo [title]="'Cód: '+ selectedProject.id"></app-titulo>
-      </div>
-      <div class="col-3">
-        <button class="btn  btn-outline-danger" (click)="voltar()">Fechar</button>
-      </div>
-    </div>
+  <div class="col-sm-6" *ngIf="ver">
+    <app-titulo [title]="(selectedProject.id === 0 ? 'Novo Projeto': 'Cód: ' + selectedProject.id)">
+      <button class="btn  btn-outline-danger" (click)="voltar()">Fechar</button>
+    </app-titulo>
 
     <form [formGroup]="projectForm" (submit)="projectSubmit()">
       <div class="form-group">
@@ -25,8 +20,12 @@
     </form>
   </div>
 
-  <div [ngClass]="{'col-sm-8': ver, 'col-sm-12': !ver}">
-    <app-titulo [title]="title"></app-titulo>
+  <div [ngClass]="{'col-sm-6': ver, 'col-sm-12': !ver}">
+    <app-titulo [title]="title">
+
+      <button class="btn btn-sm btn-success" (click)="projetoNovo()">Cadastrar Projeto</button>
+
+    </app-titulo>
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
@@ -39,13 +38,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let projetos of projetos">
-          <th> <button (click)="selectProject(projetos)" class=" text-dark btn btn-sm btn-outline-warning ">Detalhe</button></th>
+          <th> <button (click)="selectProject(projetos)"
+              class=" text-dark btn btn-sm btn-outline-warning ">Detalhe</button></th>
           <th scope="row">{{projetos.id}}</th>
           <td>{{projetos.name}}</td>
           <td>{{projetos.description}}</td>
           <td class="btn-group">
-            <button (click)="openModal(template)"  class="btn btn-sm btn-outline-primary">Devs</button>
-            <button class="btn btn-sm btn-outline-danger">Excluir</button>
+            <button (click)="openModal(template, projetos.id)" class="btn btn-sm btn-outline-primary">Devs</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deletarProjeto(projetos.id)">Excluir</button>
           </td>
         </tr>
       </tbody>
@@ -55,11 +55,10 @@
 
 <ng-template #template>
   <div class="modal-body">
-    <app-desenvolvedores></app-desenvolvedores>
+    <app-devs-projetos (closeModal)="closeModal()" [devs]="devsProjetos"></app-devs-projetos>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn pull-right" aria-label="Close"
-    (click)="modalRef?.hide()">Fechar
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">Fechar
     </button>
   </div>
 </ng-template>

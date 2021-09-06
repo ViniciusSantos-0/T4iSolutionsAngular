@@ -13,19 +13,26 @@ import { TituloComponent } from './titulo/titulo.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { DevsProjetosComponent } from './projetos/devs-projetos/devs-projetos.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import { ProjetosDevsComponent } from './desenvolvedores/projetos-devs/projetos-devs.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjetosComponent,
-      DesenvolvedoresComponent,
-      PerfilComponent,
-      DashboardComponent,
-      NavComponent,
-      TituloComponent
-   ],
+    DesenvolvedoresComponent,
+    PerfilComponent,
+    DashboardComponent,
+    NavComponent,
+    TituloComponent,
+    DevsProjetosComponent,
+    ProjetosDevsComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,8 +41,17 @@ import {HttpClientModule} from '@angular/common/http'
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    NgxSpinnerModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+      closeButton: true
+    })
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

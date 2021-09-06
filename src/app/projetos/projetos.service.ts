@@ -20,11 +20,15 @@ export class ProjetosService {
   getById(id: number): Observable<Projeto>{
     return this.http.get<Projeto>(`${this.baseUrl}/${id}`);
   }
+
+  getByWorksById(id: number): Observable<Projeto[]> {
+    return this.http.get<Projeto[]>(`${this.baseUrl}/works/${id}`);
+  }
   post(projeto: Projeto){
     return this.http.post(`${this.baseUrl}`,projeto);
   }
-  put(id: number, projeto: Projeto){
-    return this.http.put(`${this.baseUrl}/${id}`,projeto);
+  put( projeto: Projeto){
+    return this.http.put(`${this.baseUrl}/${projeto.id}`,projeto);
   }
 
   delete(id: number){

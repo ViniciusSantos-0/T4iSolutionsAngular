@@ -1,4 +1,4 @@
-export class Projeto {
+export class Works {
   constructor() {
     this.id = 0;
     this.name = '';
@@ -7,4 +7,5 @@ export class Projeto {
   id!: number;
   name!: string;
   description!: string;
+  devId!: number;
 }
